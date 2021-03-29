@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.os.Handler;
+
 public class EditTitleActivity extends AppCompatActivity {
 
   // TODO:
@@ -61,8 +63,8 @@ public class EditTitleActivity extends AppCompatActivity {
        */
       this.isEditing = true;
       fabStartEdit.animate().alpha(0f).start();
+      fabEditDone.animate().alpha(1f).start();
       fabStartEdit.setVisibility(View.GONE);
-      fabEditDone.animate().alpha(1f).setDuration(300L).start();
       fabEditDone.setVisibility(View.VISIBLE);
       textViewTitle.setVisibility(View.GONE);
       editTextTitle.setVisibility(View.VISIBLE);
@@ -85,13 +87,13 @@ public class EditTitleActivity extends AppCompatActivity {
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
 
-      fabEditDone.animate().scaleX(10).scaleY(10).setDuration(1000L).start();
-      fabEditDone.animate().alpha(0f).setStartDelay(8000L).start();
-      fabEditDone.setVisibility(View.GONE);
+      fabEditDone.animate().alpha(0f).start();
       fabStartEdit.animate().alpha(1f).setDuration(300L).start();
+
       String str = editTextTitle.getText().toString();
       textViewTitle.setText(str);
       editTextTitle.setVisibility(View.GONE);
+      fabEditDone.setVisibility(View.GONE);
       fabStartEdit.setVisibility(View.VISIBLE);
       textViewTitle.setVisibility(View.VISIBLE);
       InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
